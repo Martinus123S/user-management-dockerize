@@ -1,33 +1,35 @@
 package com.martin.userman.model;
 
-import jakarta.persistence.CascadeType;
+import com.martin.userman.model.constant.PaymentType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.PrePersist;
-import jakarta.persistence.Table;
 import lombok.Data;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.UUID;
 
-@Entity
+@Entity(name = "transaction")
 @Data
-@Table(name = "users")
-public class User {
+public class Transaction {
 	@Id
 	@GeneratedValue
 	private UUID id;
 
-	private String name;
-	private String email;
-	private String password;
+	private Long balance;
+
+	private PaymentType type;
+
+	@ManyToOne
+	@JoinColumn(name = "account_id", nullable = false)
+	private Account account;
+
 	private LocalDateTime createdAt;
-	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
-	private List<Account> accounts = new ArrayList<>();
 
 	@PrePersist
 	public void prePersist() {

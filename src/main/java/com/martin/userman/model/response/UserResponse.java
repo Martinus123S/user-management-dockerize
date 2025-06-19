@@ -12,6 +12,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class UserResponse implements Serializable {
 	private static final long serialVersionUID = -1664348605453118840L;
+	private String id;
 	private String name;
 	private String email;
 	private LocalDateTime createdAt;

@@ -1,4 +1,4 @@
-package com.martin.userman.model.dto;
+package com.martin.userman.model.request;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class UserRequest {
 	private String name;
-
 	private String email;
+	private String password;
 }
 
