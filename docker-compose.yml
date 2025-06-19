@@ -1,4 +1,21 @@
+version: '3.8'
 services:
+  app:
+    build: .
+    image: user-man-myapp
+    ports:
+      - "8080:8080"
+    networks: [ mynetwork ]
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgre:5432/postgres
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: postgres
+      SPRING_PROFILES_ACTIVE: production
+      SPRING_CONFIG_ADDITIONAL_LOCATION: file:/
+    command: >
+      java -Xms512m -Xmx1024m -jar app.jar
+      --spring.profiles.active=production
+      --spring.config.additional-location=file:/
   postgre:
     container_name: postgre
     image: postgres
@@ -10,5 +27,7 @@ services:
     ports:
       - "5432:5432"
     restart: always
+    networks: [ 'mynetwork' ]
+networks: { mynetwork: { } }
 volumes:
   postgre_data_container:

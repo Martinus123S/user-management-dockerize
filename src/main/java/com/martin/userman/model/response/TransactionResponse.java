@@ -19,6 +19,4 @@ public class TransactionResponse {
 	private String type;
 	private Long amount;
 	private LocalDateTime timestamp;
-	private String status;
-	private String message;
 }

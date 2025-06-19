@@ -6,7 +6,7 @@ Spring Boot REST API for user account management, JWT authentication, transactio
 
 ## Prerequisites
 
-You need Java 17 or newer, Maven 3.6 or newer, and a PostgreSQL database. Optionally, you can use Docker for containerization.
+You need Java 21 or newer, Maven 3.6 or newer, and a PostgreSQL database. Optionally, you can use Docker for containerization.
 
 ---
 
@@ -52,5 +52,5 @@ jwt.secret=your_base64_encoded_secret_here
 Build your maven
 ```angular2html
 mvn clean install
-mvn springboot:run
+docker compose up
 ```
